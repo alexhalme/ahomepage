@@ -12,15 +12,18 @@
         ALEX HALME
       </div>
       <q-breadcrumbs class=" flex-cntt"
+        v-for="(bc, bcIndex) in parsedBC"
+        :key="`bc-${bcIndex}`"
         gutter="md"
+        style="min-width:100%;white-space:nowrap;"
       >
         <template #separator>
-          <div class="text-weight-bold" style="margin-top:-16px;">
+          <div class="text-weight-bold" :style="(bcGreen[bcIndex] || (!moveGreen)) ? 'margin-top:-6px;' : 'margin-top:4px;'">
             /
           </div>
         </template>
         <q-breadcrumbs-el
-          v-for="section in Object.keys(sections)"
+          v-for="section in bc"
           :key="section"
           class="flex-cncc "
           style="height:100%;"
@@ -30,11 +33,13 @@
             :class="`text-weight-medium ${selected === section ? 'text-green-8': ''}`"
             :style="`height:22px;${selected !== section ? 'cursor:pointer;' : ''}font-size:1.2em;font-family: Inter,ui-sans-serif,system-ui,-apple-system;`"
           >
-            {{sections[selected][lang]}}
+            {{sections[section][lang]}}
           </div>
           <div
+            @click="$emit('select', section)"
+            v-if="bcGreen[bcIndex] || (!moveGreen)"
             :class="`left-font text-weight-bolder ${selected === section ? 'text-green-8': ''}`"
-            style="height:22px;width:14px;font-size:1.4em;"
+            :style="`height:18px;width:14px;font-size:1.4em;margin-top:-7px;${selected !== section ? 'cursor:pointer;' : ''}`"
           >
             {{selected === section ? '•' : '' }}
           </div>
@@ -95,8 +100,27 @@ export default defineComponent({
     mobile: { type: Boolean, required: false, default() { return false } },
     selected: { type: String, required: false, default() { return 'about' } }
   },
-  data() {
-    return {}
+  data () {
+    return {
+      moveGreen: false
+    }
+  },
+  computed: {
+    parsedBC () {
+      const retval = []
+      let acc = []
+      for (const i in Object.keys(this.sections)) {
+        if (acc.length === 3) {
+          retval.push(acc)
+          acc = []
+        }
+        acc.push(Object.keys(this.sections)[i])
+      }
+      return [retval, [acc]].flat()
+    },
+    bcGreen () {
+      return this.parsedBC.map(xx => xx.reduce((aa, yy) => yy === this.selected ? true : aa, false))
+    }
   }
 })
 </script>
