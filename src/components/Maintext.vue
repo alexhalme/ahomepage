@@ -11,10 +11,68 @@
       -->
     </div>
     <div
-      v-if="lang === 'fr' && selected == 'patients'"
+      v-if="selected == 'forms'"
+      class="flex-cntt"
+    >
+      <div v-if="lang === 'fr'">
+        Les formulaires
+      </div>
+      <q-list bordered class="rounded-borders">
+        <!--<div
+          v-for="form in sortedForms"
+          :key="form.label"
+        >
+          <q-item class="fontroboto flex-rnbt" >
+            <div class="flex-cntt">
+              <q-item-label>{{`${lang === 'fr' ? 'Formulaire' : 'Form'} ${form.form}`}}</q-item-label>
+              <q-item-label caption lines="2">{{form.label}}</q-item-label>
+            </div>
+
+            <div class="flex-cnbe " style="">
+              <div class="text-weight-bold text-black" style="font-size:0.8em;white-space:nowrap;" >{{form.cost}} $</div>
+              <div class="flex-rnee " >
+                <q-icon  :name="`mdi-${form.icon}`" color="green" />
+              </div>
+            </div>
+          </q-item>
+          <q-separator spaced inset />
+        </div>-->
+        <q-expansion-item class="fontroboto"
+          v-for="sortedFormType in Object.keys(sortedForms)"
+          :key="sortedFormType"
+          expand-separator
+          :icon="`mdi-${sortedFormType}`"
+          :label="`${lang === 'fr' ? 'Formulaires —' : 'Forms —'} ${catNames[sortedFormType][1 - Number(lang === 'fr')]}`"
+        >
+          <q-card class="q-pl-md">
+            <div
+              v-for="(form, formIndex) in sortedForms[sortedFormType]"
+              :key="form.label"
+            >
+              <q-separator v-if="formIndex !== 0" spaced inset />
+              <q-item class=" flex-rnbt" >
+                <div class="flex-cntt">
+                  <q-item-label>{{`${lang === 'fr' ? 'Formulaire' : 'Form'} ${form.form}`}}</q-item-label>
+                  <q-item-label caption lines="2">{{`${form.label} (${form.pages} page${form.pages > 1 ? 's' : ''})`}}</q-item-label>
+                </div>
+
+                <div class="flex-cnbe " style="">
+                  <div class="text-weight-bold text-black" style="font-size:0.8em;white-space:nowrap;" >{{form.cost}} $</div>
+                  <div class="flex-rnee " >
+                    <q-icon  :name="`mdi-${form.icon}`" color="green" />
+                  </div>
+                </div>
+              </q-item>
+            </div>
+          </q-card>
+        </q-expansion-item>
+      </q-list>
+    </div>
+    <div
+      v-if="lang === 'fr' && selected == 'rv'"
     >
       Pour prendre rendez-vous à l'<slink>Hôpital de Sainte-Anne-des-Monts</slink>, contactez le centre de rendez-vous.
-      <sicon :dat="[['email', 'rendez-vous.cisssgaspesie@ssss.gouv.qc.ca'], ['call', '+1 418 763-2261 # 2070']]" />
+      <sicon :dat="[['email', 'rendez-vous.cisssgaspesie'], ['', '@ssss.gouv.qc.ca'], ['call', '+1 418 763-2261 # 2070']]" />
       <br/><br/>
       Pour prendre rendez-vous à l'<slink>Hôpital Pierre-Boucher</slink>, contactez l'UEGM.
       <sicon :dat="[['call', '+1 450 396-2016'], ['fax', '+1 450 616-8515']]" />
@@ -48,7 +106,7 @@
       -->
     </div>
     <div
-      v-if="lang === 'en' && selected == 'patients'"
+      v-if="lang === 'en' && selected == 'rv'"
     >
       For an appointment at <slink>Hôpital de Sainte-Anne-des-Monts</slink>, contact the appointment center.
       <sicon :dat="[['email', 'rendez-vous.cisssgaspesie@ssss.gouv.qc.ca'], ['call', '+1 418 763-2261 # 2070']]" />
@@ -87,10 +145,32 @@ export default defineComponent({
   props: {
     lang: { type: String, required: false, default() { return 'fr' } },
     selected: { type: String, required: false, default() { return 'about' } },
-    sections: { type: Object, required: false, default() { return {} } }
+    sections: { type: Object, required: false, default() { return {} } },
+    forms: { type: Array, required: false, default() { return [] } }
   },
   data() {
     return {
+      catNames: {
+        'train-car': ['transport', 'transport'],
+        'scale-balance': ['légal', 'legal'],
+        'medical-bag': ['attestation médicale', 'medical certificate'],
+        'pill': ['ordonnances', 'prescriptions'],
+        'human-wheelchair': ['personnes avec handicap', 'individuals with a handicap'],
+        'bank-outline': ['crédits d\'impôts autres', 'other tax credits'],
+        'handshake-outline': ['perte d\'autonomie', 'loss of autonomy'],
+        'ambulance': ['fin de vie', 'end of life']
+      }
+    }
+  },
+  computed: {
+    sortedFormsLABEL () {
+      const sortedLabels = JSON.parse(JSON.stringify(this.forms)).reduce((a, x) => a.includes(x.label) ? a : [a, [x.label]].flat(), [])
+      return sortedLabels.map(x => this.forms.filter(y => y.label === x)[0])
+    },
+    sortedForms () {
+      const sortedLabels = JSON.parse(JSON.stringify(this.forms)).reduce((a, x) => a.includes(x.icon) ? a : [a, [x.icon]].flat(), [])
+      // return sortedLabels.map(x => this.forms.filter(y => y.icon === x)).flat()
+      return sortedLabels.reduce((d, x) => { return { ...d, [x]: this.forms.filter(y => y.icon === x) } }, {})
     }
   },
   methods: {

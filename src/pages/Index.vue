@@ -17,7 +17,7 @@
         >
         </div>
         <div
-          :class="`flex-rnbs ${mobile ? 'q-pa-sm' : ''}`"
+          class="flex-rnbs"
           :style="`width:100%;max-width:${mobile ? threshold : widths[0]}px;flex:1;`"
         >
           <ltmenu
@@ -37,24 +37,22 @@
               class="flex-cnbt "
             >
               <div
-                class="flex-cnss "
+                class="flex-cnss"
               >
                 <div class="flex-rnbc" style="width:100%;">
-                  <ltmenu
-                    v-if="mobile"
-                    :selected="selected"
-                    :sections="sections"
-                    :lang="lang"
-                    :mobile="mobile"
-                    @select="selected = $event"
-                  />
                   <div
-                    v-if="!mobile"
+                    :class="`flex-rnbc ${mobile ? 'q-ma-sm' : ''}`"
                     style="font-family: 'Krona One', sans-serif;"
                   >
-                    ALEX HALME
+                    <img
+                      class="q-mr-md"
+                      v-if="mobile"
+                      style="height:40px;width:40px;"
+                      src="../assets/icon1.png"
+                    />
+                    <div>ALEX HALME</div>
                   </div>
-                  <div class="font-left text-weight-normal flex-rwee " style="font-size:12pt;align-self:start;min-width:60px;">
+                  <div class="font-left text-weight-normal flex-rwee q-ma-sm" style="font-size:12pt;align-self:start;min-width:60px;">
                     <div
                       @click="lang = 'fr'"
                       :style="`${lang === 'fr' ? 'opacity:1;text-decoration: underline;' : 'opacity:1;cursor:pointer;'}`"
@@ -71,18 +69,27 @@
                   </div>
                 </div>
                 <div
-                  :style="`margin-top:${margintop[mobile]}px;font-family: 'PT Serif', serif;font-size:1.2em;`"
-                  class=""
+                  :style="`margin-top:${margintop[mobile]}px;font-family: 'PT Serif', serif;font-size:1.2em;width:100%;`"
+                  class="flex-cntt"
                 >
-                  <maintext
+                  <ltmenu
+                    v-if="mobile"
+                    :selected="selected"
+                    :sections="sections"
+                    :lang="lang"
+                    :mobile="mobile"
+                    @select="selected = $event"
+                  />
+                  <maintext :class="mobile ? 'q-pa-sm' : ''" style="width:100%;"
                     :lang="lang"
                     :selected="selected"
                     :sections="sections"
+                    :forms="forms"
                   />
                 </div>
               </div>
               <div
-                class="flex-rnbc q-mb-sm"
+                :class="`flex-rnbc q-mb-sm ${mobile ? 'q-px-sm' : ''}`"
               >
                 <div
                   class="left-font text-weight-medium"
@@ -118,6 +125,7 @@
 import Maintext from 'src/components/Maintext.vue'
 import { defineComponent } from "vue"
 import Ltmenu from "../components/Ltmenu.vue"
+import $ from 'jquery'
 
 // https://mitchellh.com/
 export default defineComponent({
@@ -128,12 +136,13 @@ export default defineComponent({
       threshold: 650,
       size: { width: 0 },
       widths: [1050, 550],
-      margintop: { true: 40, false: 80 },
+      margintop: { true: -30, false: 80 },
       lang: 'fr',
       selected: 'about',
       sections: {
         about: { fr: 'À propos', en: 'About' },
-        patients: { fr: 'Patients', en: 'Patients' },
+        rv: { fr: 'Rendez-vous', en: 'Appointments' },
+        forms: { fr: 'Formulaires', en: 'Forms' },
         mds: { fr: 'Professionnels', en: 'Healthcare workers' },
         contact: { fr: 'Contact', en: 'Contact' }
         // projects: { fr: 'Projets', en: 'Projects' }
@@ -143,7 +152,9 @@ export default defineComponent({
         ['twitter', 'https://twitter.com/alex_halme?lang=en', 24],
         ['github', 'https://github.com/alexhalme', 24]
       ].map(x => [require(`../assets/${x[0]}.svg`), x[1], x[2]]),
-      drawer: true
+      drawer: true,
+      forms: [],
+      server: null
     }
   },
   computed: {
@@ -153,11 +164,32 @@ export default defineComponent({
   },
   mounted () {
     this.selected = Object.keys(this.sections)[0]
+    this.server = 'https://alexhal.me/'
+    if (/^.*(localhost|127.0.0.1):.*$/.test(window.location.href)) {
+      this.server = 'http://127.0.0.1:5145/'
+      if (!/^.*(localhost|127.0.0.1):5145.*$/.test(window.location.href)) {
+        window.location.href = 'http://127.0.0.1:5145'
+      }
+    }
+    if (!/^.*(localhost:5145|127.0.0.1:5145|alexhal.me).*$/.test(window.location.href)) {
+      return false
+    }
+    $.ajax({
+      url: `${this.server}fees`,
+      type: 'get',
+      success: ((retval) => {
+        this.forms = retval
+      }),
+      error: ((error) => {
+        console.log(error)
+      })
+    })
   },
   methods: {
     goTo (where) {
       window.open(where)
     }
+
   }
 })
 </script>
