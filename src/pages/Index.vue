@@ -47,12 +47,14 @@
                     <img
                       class="q-mr-md"
                       v-if="mobile"
-                      style="height:40px;width:40px;"
+                      style="height:50px;width:50px;"
                       src="../assets/icon1.png"
                     />
                     <div>ALEX HALME</div>
                   </div>
-                  <div class="font-left text-weight-normal flex-rwee q-ma-sm" style="font-size:12pt;align-self:start;min-width:60px;">
+                  <div class="font-left text-weight-normal flex-rwee q-ma-sm" style="font-size:12pt;align-self:start;min-width:60px;"
+                    v-if="false"
+                  >
                     <div
                       @click="lang = 'fr'"
                       :style="`${lang === 'fr' ? 'opacity:1;text-decoration: underline;' : 'opacity:1;cursor:pointer;'}`"
@@ -148,9 +150,9 @@ export default defineComponent({
         // projects: { fr: 'Projets', en: 'Projects' }
       },
       svgs: [
-        ['cmq8', 'http://cmq.org/bottin/details.aspx?id=36B6BFFFBB1CD73A0499C1AA1E364821&lang=fr&a=1', 29],
-        ['twitter', 'https://twitter.com/alex_halme?lang=en', 24],
-        ['github', 'https://github.com/alexhalme', 24]
+        ['cmq8', 'http://cmq.org/bottin/details.aspx?id=36B6BFFFBB1CD73A0499C1AA1E364821&lang=fr&a=1', 29]
+        // ['twitter', 'https://twitter.com/alex_halme?lang=en', 24],
+        // ['github', 'https://github.com/alexhalme', 24]
       ].map(x => [require(`../assets/${x[0]}.svg`), x[1], x[2]]),
       drawer: true,
       forms: [],

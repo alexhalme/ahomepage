@@ -18,6 +18,8 @@ import httpx
 app = FastAPI()
 app.mount('/app', StaticFiles(directory = f.path('dist/spa')), name = 'static')
 
+DEV_SERVER = True
+
 app.add_middleware(
   CORSMiddleware,
   allow_origins = [
