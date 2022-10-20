@@ -1,13 +1,14 @@
-﻿100,Demande d'admission au transport adapté,V-2851,4,,train-car
-75,Certificat d'attestation d'aptitude à tester ou à rédiger un mandat de protection,,1,,scale-balance
-40,Certificat d'attestation médicale,,1,,medical-bag
-40,Renouvellement d'ordonnance,,1,,pill
-100,Rapport d'examen médical - permis de conduire,M-28,4,,train-car
-75,Attestation de déficience,TP-752.0.14,6,,human-wheelchair
-75,Rapport médical pour une prestation d'invalidité du Régime de pensions du Canada,ISP-2519,6,,bank-outline
-150,Certificat pour le crédit d'impôt pour personnes handicapées,T2201,12,,human-wheelchair
-40,Attestation statut de personne non autonome,TPZ-1029.MD.A,1,,handshake-outline
-40,Attestation d'assistance soutenue personne aidante sans lien familial avec la personne aidée,TP-1029.AN.A,2,,handshake-outline
-40,Attestation médicale de maladie en phase terminale pour une demande de prestations d'invalidité,ISP-2530B,2,,ambulance
-100,Rapport médical pour une prestation de maladie en phase terminale d’un régime de retraite du secteur public,RSP-448,3,*,ambulance
-150,Rapport médical pour une prestation d’un régime de retraite du secteur public,RSP-502,6,*,bank-outline
+﻿100,Demande d'admission au transport adapté,Société de transport de Montréal,V-2851,4,,train-car
+40,Demande de vignette de stationnement pour personnes handicapées,Société de l'assurance automobile du Québec,6375,4,,train-car
+75,Certificat d'attestation d'aptitude à tester ou à rédiger un mandat de protection,,,1,,scale-balance
+40,Certificat d'attestation médicale,,,1,,medical-bag
+40,Renouvellement d'ordonnance,,,1,,pill
+100,Rapport d'examen médical - permis de conduire,Société de l'assurance automobile du Québec,M-28,4,,train-car
+75,Attestation de déficience,Revenu Québec,TP-752.0.14,6,,human-wheelchair
+75,Rapport médical pour une prestation d'invalidité du Régime de pensions du Canada,Revenu Canada,ISP-2519,6,,bank-outline
+150,Certificat pour le crédit d'impôt pour personnes handicapées,Revenu Canada,T2201,12,,human-wheelchair
+40,Attestation statut de personne non autonome,Revenu Québec,TPZ-1029.MD.A,1,,handshake-outline
+40,Attestation d'assistance soutenue personne aidante sans lien familial avec la personne aidée,Revenu Québec,TP-1029.AN.A,2,,handshake-outline
+40,Attestation médicale de maladie en phase terminale pour une demande de prestations d'invalidité,Revenu Canada,ISP-2530B,2,,ambulance
+100,Rapport médical pour une prestation de maladie en phase terminale d’un régime de retraite du secteur public,Revenu Canada,RSP-448,3,*,ambulance
+150,Rapport médical pour une prestation d’un régime de retraite du secteur public,Revenu Canada,RSP-502,6,*,bank-outline

@@ -53,7 +53,7 @@ def getFees():
 
   return JSONResponse([{
     'cost': float(f"{Inflater.get(DT(2022, 1, 1, 0, 0, 0)) * float(x[0]):.2f}"),
-    **{k: v for k, v in zip(['label', 'form', 'pages', 'starpages', 'icon'], x[1:])}
+    **{k: v for k, v in zip(['label' , 'org', 'form', 'pages', 'starpages', 'icon'], x[1:])}
   } for x in FEES_CSV])
 
 

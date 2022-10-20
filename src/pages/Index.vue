@@ -150,7 +150,7 @@ export default defineComponent({
         // projects: { fr: 'Projets', en: 'Projects' }
       },
       svgs: [
-        ['cmq8', 'http://cmq.org/bottin/details.aspx?id=36B6BFFFBB1CD73A0499C1AA1E364821&lang=fr&a=1', 29]
+        // ['cmq8', 'http://cmq.org/bottin/details.aspx?id=36B6BFFFBB1CD73A0499C1AA1E364821&lang=fr&a=1', 29]
         // ['twitter', 'https://twitter.com/alex_halme?lang=en', 24],
         // ['github', 'https://github.com/alexhalme', 24]
       ].map(x => [require(`../assets/${x[0]}.svg`), x[1], x[2]]),

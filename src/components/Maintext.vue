@@ -85,8 +85,9 @@
               <q-separator v-if="formIndex !== 0" spaced inset />
               <q-item class=" flex-rnbt" >
                 <div class="flex-cntt">
-                  <q-item-label>{{`${lang === 'fr' ? 'Formulaire' : 'Form'} ${form.form}`}}</q-item-label>
-                  <q-item-label caption lines="2">{{`${form.label} (${form.pages} page${form.pages > 1 ? 's' : ''})`}}</q-item-label>
+                  <q-item-label style="font-size:12pt;" class="text-weight-medium">{{`${lang === 'fr' ? 'Formulaire' : 'Form'} ${form.form}`}}</q-item-label>
+                  <q-item-label style="font-size:11pt;" class="q-ml-md">{{form.org}}</q-item-label>
+                  <q-item-label style="font-size:11pt;" caption lines="2" class="q-ml-md">{{`${form.label} (${form.pages} page${form.pages > 1 ? 's' : ''})`}}</q-item-label>
                 </div>
 
                 <div class="flex-cnbe " style="">
