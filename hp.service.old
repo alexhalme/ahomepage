@@ -8,11 +8,12 @@
 Description=serves vuebill with FastAPI
 
 [Service]
-User=alex
+User=alexhalme
 Group=www-data
-WorkingDirectory=/home/alex/python/ahomepage
+WorkingDirectory=/home/alexhalme/python/ahomepage
 EnvironmentFile=/etc/environment
-ExecStart=/home/alex/python/miniconda3/envs/webstd/bin/python3 /home/alex/.local/bin/uvicorn hp:app --proxy-headers --port 5145 --workers 5
+#ExecStart=python3 vuebill_fastapi.py
+ExecStart=python3 /home/alexhalme/.local/bin/uvicorn hp:app --proxy-headers --port 5145 --workers 5
 
 [Install]
 WantedBy=multi-user.target
