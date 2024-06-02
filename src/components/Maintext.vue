@@ -75,7 +75,7 @@
           :key="sortedFormType"
           expand-separator
           :icon="`mdi-${sortedFormType}`"
-          :label="`${lang === 'fr' ? 'Formulaires —' : 'Forms —'} ${catNames[sortedFormType][1 - Number(lang === 'fr')]}`"
+          :label="`${sortedFormType === 'scale-balance' ? '' : (lang === 'fr' ? 'Formulaires —' : 'Forms —')} ${catNames[sortedFormType][1 - Number(lang === 'fr')]}`"
         >
           <q-card class="q-pl-md">
             <div
@@ -85,9 +85,10 @@
               <q-separator v-if="formIndex !== 0" spaced inset />
               <q-item class=" flex-rnbt" >
                 <div class="flex-cntt">
-                  <q-item-label style="font-size:12pt;" class="text-weight-medium">{{`${lang === 'fr' ? 'Formulaire' : 'Form'} ${form.form}`}}</q-item-label>
+                  <q-item-label style="font-size:12pt;" class="text-weight-medium">{{form.form}}</q-item-label>
                   <q-item-label style="font-size:11pt;" class="q-ml-md">{{form.org}}</q-item-label>
-                  <q-item-label style="font-size:11pt;" caption lines="2" class="q-ml-md">{{`${form.label} (${form.pages} page${form.pages > 1 ? 's' : ''})`}}</q-item-label>
+                  <q-item-label style="font-size:11pt;" caption lines="2" class="q-ml-md" v-if="form.pages !== '0'">{{`${form.label} (${form.pages} page${form.pages > 1 ? 's' : ''})`}}</q-item-label>
+                  <q-item-label style="font-size:11pt;" caption lines="2" class="q-ml-md" v-if="form.pages === '0'">{{form.label}}</q-item-label>
                 </div>
 
                 <div class="flex-cnbe " style="">
@@ -360,7 +361,7 @@ export default defineComponent({
       ratioLR: 70,
       catNames: {
         'train-car': ['transport', 'transport'],
-        'scale-balance': ['légal', 'legal'],
+        'scale-balance': ['Légal', 'Legal'],
         'medical-bag': ['attestation médicale', 'medical certificate'],
         'pill': ['ordonnances', 'prescriptions'],
         'human-wheelchair': ['personnes avec handicap', 'individuals with a handicap'],

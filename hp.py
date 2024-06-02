@@ -50,11 +50,16 @@ Inflater = f.Inflation()
 
 @app.get('/fees')
 def getFees():
+  round_to_5 = lambda x: 5 if x < 5 else ((int(x / 5) * 5) + int((x - (int(x / 5) * 5)) > 2.5) * 5)
 
   return JSONResponse([{
-    'cost': float(f"{Inflater.get(DT(2022, 1, 1, 0, 0, 0)) * float(x[0]):.2f}"),
+    'cost': round_to_5(Inflater.get(DT(2022, 1, 1, 0, 0, 0)) * float(x[0])),
     **{k: v for k, v in zip(['label' , 'org', 'form', 'pages', 'starpages', 'icon'], x[1:])}
   } for x in FEES_CSV])
+#  return JSONResponse([{
+#    'cost': float(f"{Inflater.get(DT(2022, 1, 1, 0, 0, 0)) * float(x[0]):.2f}"),
+#    **{k: v for k, v in zip(['label' , 'org', 'form', 'pages', 'starpages', 'icon'], x[1:])}
+#  } for x in FEES_CSV])
 
 
 

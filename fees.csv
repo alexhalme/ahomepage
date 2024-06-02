@@ -1,14 +1,17 @@
-﻿100,Demande d'admission au transport adapté,Société de transport de Montréal,V-2851,4,,train-car
-40,Demande de vignette de stationnement pour personnes handicapées,Société de l'assurance automobile du Québec,6375,4,,train-car
-75,Certificat d'attestation d'aptitude à tester ou à rédiger un mandat de protection,,,1,,scale-balance
+﻿100,Demande d'admission au transport adapté,Société de transport de Montréal,Formulaire V-2851,4,,train-car
+40,Demande de vignette de stationnement pour personnes handicapées,Société de l'assurance automobile du Québec,Formulaire 6375,4,,train-car
+75,Certificat d'attestation d'aptitude à tester ou à rédiger un mandat de protection,,Formulaire divers,1,,scale-balance
+590,Services d'expertise médicolégale,,Tarif horaire d'expertise,0,,scale-balance
+98.33,Services d'expertise médicolégale,"Pour entretiens courts (appels téléphoniques, courriels, etc.)",Tarif minimal,0,,scale-balance
+2596,Services d'expertise médicolégale,,Demi-journée au tribunal,0,,scale-balance
 40,Certificat d'attestation médicale,,,1,,medical-bag
 40,Renouvellement d'ordonnance,,,1,,pill
-100,Rapport d'examen médical - permis de conduire,Société de l'assurance automobile du Québec,M-28,4,,train-car
-75,Attestation de déficience,Revenu Québec,TP-752.0.14,6,,human-wheelchair
-75,Rapport médical pour une prestation d'invalidité du Régime de pensions du Canada,Revenu Canada,ISP-2519,6,,bank-outline
-150,Certificat pour le crédit d'impôt pour personnes handicapées,Revenu Canada,T2201,12,,human-wheelchair
-40,Attestation statut de personne non autonome,Revenu Québec,TPZ-1029.MD.A,1,,handshake-outline
-40,Attestation d'assistance soutenue personne aidante sans lien familial avec la personne aidée,Revenu Québec,TP-1029.AN.A,2,,handshake-outline
-40,Attestation médicale de maladie en phase terminale pour une demande de prestations d'invalidité,Revenu Canada,ISP-2530B,2,,ambulance
-100,Rapport médical pour une prestation de maladie en phase terminale d’un régime de retraite du secteur public,Revenu Canada,RSP-448,3,*,ambulance
-150,Rapport médical pour une prestation d’un régime de retraite du secteur public,Revenu Canada,RSP-502,6,*,bank-outline
+100,Rapport d'examen médical - permis de conduire,Société de l'assurance automobile du Québec,Formulaire M-28,4,,train-car
+75,Attestation de déficience,Revenu Québec,Formulaire TP-752.0.14,6,,human-wheelchair
+75,Rapport médical pour une prestation d'invalidité du Régime de pensions du Canada,Revenu Canada,Formulaire ISP-2519,6,,bank-outline
+150,Certificat pour le crédit d'impôt pour personnes handicapées,Revenu Canada,Formulaire T2201,12,,human-wheelchair
+40,Attestation statut de personne non autonome,Revenu Québec,Formulaire TPZ-1029.MD.A,1,,handshake-outline
+40,Attestation d'assistance soutenue personne aidante sans lien familial avec la personne aidée,Revenu Québec,Formulaire TP-1029.AN.A,2,,handshake-outline
+40,Attestation médicale de maladie en phase terminale pour une demande de prestations d'invalidité,Revenu Canada,Formulaire ISP-2530B,2,,ambulance
+100,Rapport médical pour une prestation de maladie en phase terminale d’un régime de retraite du secteur public,Revenu Canada,Formulaire RSP-448,3,*,ambulance
+150,Rapport médical pour une prestation d’un régime de retraite du secteur public,Revenu Canada,Formulaire RSP-502,6,*,bank-outline

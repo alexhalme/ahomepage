@@ -10,7 +10,7 @@ Description=serves vuebill with FastAPI
 [Service]
 User=alex
 Group=www-data
-WorkingDirectory=/home/alex/python/ahomepage
+WorkingDirectory=/home/alex/apps/ahomepage
 EnvironmentFile=/etc/environment
 ExecStart=/home/alex/python/miniconda3/envs/webstd/bin/python3 /home/alex/.local/bin/uvicorn hp:app --proxy-headers --port 5145 --workers 5
 
